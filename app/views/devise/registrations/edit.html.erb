@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="col-md-4">
+    <h2>Редактирование профиля <%= @user.name %></h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="form-group">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+      </div>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.label :password %> <i>(оставьте пустым, если не хотите менять)</i><br />
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+
+        <% if @minimum_password_length %>
+          <em>Минимум <%= @minimum_password_length %> символов</em>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password_confirmation %> <i>(подтвердите новый пароль)</i> <br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :current_password %> <i>(введите текущий пароль)</i><br />
+        <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Обновить", class: "btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="col-md-4">
+    <h3>Удалить профиль</h3>
+
+    <%= button_to "Удалить профиль", registration_path(resource_name), data: { confirm: "Вы уверены?" }, method: :delete, class: 'btn btn-danger' %>
+    <br />
+    <%= link_to "Вернуться", :back %>
+  </div>
+</div>
