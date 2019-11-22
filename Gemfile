@@ -14,6 +14,10 @@ gem 'jquery-rails'
 gem 'twitter-bootstrap-rails'
 gem 'devise'
 
+# Гем для перевода сообщений девайса
+gem 'devise-i18n'
+gem 'rails-i18n'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
