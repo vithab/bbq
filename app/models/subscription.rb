@@ -11,6 +11,17 @@ class Subscription < ApplicationRecord
   validates :user, uniqueness: { scope: :event_id, message: I18n.t('subscription.already_subscribed') }, if: -> { user.present? }
   validates :user_email, uniqueness: { scope: :event_id }, unless: -> { user.present? }
 
+  validate :user_not_organizer, on: :create, if: -> { user.present? }
+  validate :user_email_uniq, on: :create, unless: -> { user.present? }
+
+  def user_not_organizer
+    errors.add(:user_id, I18n.t('errors.organizer_subscribe')) if user == event.user
+  end
+
+  def user_email_uniq
+    errors.add(:user_email, I18n.t('errors.user_email')) if User.all.where(email: user_email).any?
+  end
+
   # переопределяем метод, если есть юзер, выдаем его имя,
   # если нет -- дергаем исходный переопределенный метод
   def user_name

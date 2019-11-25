@@ -59,3 +59,7 @@ ru:
   subscriptions:
     subscription:
       destroy_confirm: 'Вы уверены, что хотите удалить эту подписку?'
+
+  errors:
+    organizer_subscribe: 'Зачем подписываться на своё событие?'
+    user_email: 'Этот email уже зарегистрирован!'
